@@ -19,7 +19,7 @@ const Header = (props: Props) => {
           <p className='text-emerald-500'>{address?.slice(0,5)}...{address?.slice(-5)}</p>
           </div>
          </div>
-         <div className='hidden md:flex md:col-span-3 items-center justify-center rounded-md'>
+         <div className='hidden md:flex md:col-span-3 items-center justify-center'>
             <div className='bg-[#0A1F1C] p-4 space-x-2'>
             <NavButton isActive title='Buy Tickets'/>
             <NavButton onClick={disConnect} title='Logout' />
