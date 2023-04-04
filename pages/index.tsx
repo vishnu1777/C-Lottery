@@ -157,7 +157,7 @@ const Home: NextPage = () => {
             <h1 className="text-5xl text-white font-semibold text-center">
               The Next Draw
             </h1>
-            <div className="flex justify-between p-2 space-x-2">
+            <div className="flex p-2  space-x-2">
               <div className="stats">
                 <h2 className="text-sm">Total Pool</h2>
                 <p className="text-xl">
