@@ -84,14 +84,13 @@ const Home: NextPage = () => {
     if (!ticketPrice) return;
     const notification = toast.loading("Buying your tickets..");
     try {
-      const data = await BuyTickets({
-        value: [
-          ethers.utils.parseEther(
-          (
-            Number(ethers.utils.formatEther(ticketPrice)) * quantity
-          ).toString())
-        ]
-      });
+      const value =  ethers.utils.parseEther(
+        (
+          Number(ethers.utils.formatEther(ticketPrice)) * quantity
+        ).toString());
+      console.log(value)
+      const arr = [value]
+      const data = await BuyTickets({args:[value]})
      
      
       toast.success("Tickets Purchased Successfully!", { id: notification });

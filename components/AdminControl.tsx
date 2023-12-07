@@ -37,7 +37,7 @@ const AdminControl = (props: Props) => {
   const drawWinner = async () => {
     const notification = toast.loading("Drawing Winner...");
     try {
-      await DrawWinnerTicket([{}]);
+      await DrawWinnerTicket({});
       toast.success("Winner Drawn Successfully!", { id: notification });
     } catch (e) {
       toast.error("Whoops something went wrong!!", { id: notification });
@@ -47,7 +47,7 @@ const AdminControl = (props: Props) => {
   const withdrawCommission = async () => {
     const notification = toast.loading("Withdrawing Commission...");
     try {
-      await WithdrawCommission([{}]);
+      await WithdrawCommission({});
       toast.success("Withdrawn Successfully!", { id: notification });
     } catch (e) {
       toast.error("Whoops something went wrong!!", { id: notification });
@@ -57,7 +57,7 @@ const AdminControl = (props: Props) => {
   const restartDraw = async () => {
     const notification = toast.loading("Restarting Draw...");
     try {
-      await RestartDraw([{}]);
+      await RestartDraw({});
       toast.success("Draw Restarted!", { id: notification });
     } catch (e) {
       toast.error("Whoops something went wrong!!", { id: notification });
@@ -67,7 +67,7 @@ const AdminControl = (props: Props) => {
   const refundAll = async () => {
     const notification = toast.loading("Refunding...");
     try {
-      await RefundAll([{}]);
+      await RefundAll({});
       toast.success("Successfully Refunded!", { id: notification });
     } catch (e) {
       toast.error("Whoops something went wrong!!", { id: notification });
