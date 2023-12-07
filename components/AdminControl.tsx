@@ -16,7 +16,7 @@ import { currency } from "@/constants";
 type Props = {};
 
 const AdminControl = (props: Props) => {
-  const { contract } = useContract(process.env.NEXT_PUBLIC_LOTTERY_ADDRESS);
+  const { contract } = useContract("0x965bc21a75C3b8A3FBEd3B4263B8b27962F901A1");
   const { mutateAsync: DrawWinnerTicket } = useContractWrite(
     contract,
     "DrawWinnerTicket"

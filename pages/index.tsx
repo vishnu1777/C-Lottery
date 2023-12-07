@@ -22,13 +22,10 @@ import Marquee from "react-fast-marquee";
 const Home: NextPage = () => {
   const address = useAddress();
   const [userTickets, setUserTickets] = useState<number>(0);
-  const { contract, isLoading } = useContract(
-    process.env.NEXT_PUBLIC_LOTTERY_ADDRESS
-  );
-  const { data: remainingTickets } = useContractRead(
-    contract,
-    "RemainingTickets"
-  );
+  const { contract } = useContract("0x965bc21a75C3b8A3FBEd3B4263B8b27962F901A1");
+   
+  const{data:remainingTickets,isLoading:loading} = useContractRead(contract,"RemainingTickets")
+ 
   const { data: currentWinningReward } = useContractRead(
     contract,
     "CurrentWinningReward"
@@ -39,13 +36,12 @@ const Home: NextPage = () => {
     "ticketCommission"
   );
   const { data: expiration } = useContractRead(contract, "expiration");
-  const { mutateAsync: BuyTickets, isLoading: buyTicketsLoading } =
-    useContractWrite(contract, "BuyTickets");
+  const { mutateAsync: BuyTickets, isLoading } = useContractWrite(contract, "BuyTickets")
   const { data: tickets } = useContractRead(contract, "getTickets");
   const { data: winnings } = useContractRead(
     contract,
     "getWinningsForAddress",
-    address
+   [ address]
   );
   const { mutateAsync: WithdrawWinnings } = useContractWrite(
     contract,
@@ -88,22 +84,23 @@ const Home: NextPage = () => {
     if (!ticketPrice) return;
     const notification = toast.loading("Buying your tickets..");
     try {
-      const data = await BuyTickets([
-        {
-          value: ethers.utils.parseEther(
-            (
-              Number(ethers.utils.formatEther(ticketPrice)) * quantity
-            ).toString()
-          ),
-        },
-      ]);
+      const data = await BuyTickets({
+        value: [
+          ethers.utils.parseEther(
+          (
+            Number(ethers.utils.formatEther(ticketPrice)) * quantity
+          ).toString())
+        ]
+      });
+     
+     
       toast.success("Tickets Purchased Successfully!", { id: notification });
     } catch (e) {
       toast.error("Whoops something went wrong", { id: notification });
     }
   };
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (!address) return <Login />;
 
   return (
